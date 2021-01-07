@@ -1,0 +1,166 @@
+[
+    {
+        "user": "esotericpikachu",
+        "comment": "BOKL 500000 NRIC 300000 SANIMA 200000",
+        "stocks": [
+            "BOKL",
+            "NRIC",
+            "SANIMA"
+        ],
+        "holdings": {
+            "BOKL": 1838.235294117647,
+            "NRIC": 194.9317738791423,
+            "SANIMA": 557.1030640668523
+        }
+    },
+    {
+        "user": "neptuneobject",
+        "comment": "NTC 200000 NICA 500000 PRVU 300000",
+        "stocks": [
+            "NTC",
+            "NICA",
+            "PRVU"
+        ],
+        "holdings": {
+            "NTC": 155.27950310559007,
+            "NICA": 560.5381165919282,
+            "PRVU": 810.8108108108108
+        }
+    },
+    {
+        "user": "707sushi",
+        "comment": "SANIMA 500000 NRN 200000 NBL 300000",
+        "stocks": [
+            "SANIMA",
+            "NRN",
+            "NBL"
+        ],
+        "holdings": {
+            "SANIMA": 1392.757660167131,
+            "NRN": 555.5555555555555,
+            "NBL": 874.6355685131196
+        }
+    },
+    {
+        "user": "sajeebr",
+        "comment": "NABIL 500000 NBL 300000 SCB 200000",
+        "stocks": [
+            "NABIL",
+            "NBL",
+            "SCB"
+        ],
+        "holdings": {
+            "NABIL": 456.2043795620438,
+            "NBL": 874.6355685131196,
+            "SCB": 308.1664098613251
+        }
+    },
+    {
+        "user": "bib3kpandey",
+        "comment": "GMFIL 350000 NBL 250000 RLI 200000 NICA 200000",
+        "stocks": [
+            "GMFIL",
+            "NBL",
+            "RLI",
+            "NICA"
+        ],
+        "holdings": {
+            "GMFIL": 1861.7021276595744,
+            "NBL": 728.862973760933,
+            "RLI": 327.8688524590164,
+            "NICA": 224.2152466367713
+        }
+    },
+    {
+        "user": "[deleted]",
+        "comment": "CBL 1000000",
+        "stocks": [
+            "CBL"
+        ],
+        "holdings": {
+            "CBL": 5263.1578947368425
+        }
+    },
+    {
+        "user": "momschickencurry",
+        "comment": "NTC 200000 RLI 300000 NRIC 500000",
+        "stocks": [
+            "NTC",
+            "RLI",
+            "NRIC"
+        ],
+        "holdings": {
+            "NTC": 155.27950310559007,
+            "RLI": 491.8032786885246,
+            "NRIC": 324.8862897985705
+        }
+    },
+    {
+        "user": "boredrob0t",
+        "comment": "NBL 700000 STC 200000 AHPC 100000",
+        "stocks": [
+            "NBL",
+            "STC",
+            "AHPC"
+        ],
+        "holdings": {
+            "NBL": 2040.8163265306123,
+            "STC": 31.25,
+            "AHPC": 444.44444444444446
+        }
+    },
+    {
+        "user": "388191000dhwbjdowmn",
+        "comment": "SHINE 500000 NBL 500000",
+        "stocks": [
+            "SHINE",
+            "NBL"
+        ],
+        "holdings": {
+            "SHINE": 2092.050209205021,
+            "NBL": 1457.725947521866
+        }
+    },
+    {
+        "user": "cutiepiepiecutie",
+        "comment": "SICL 500000 HGI 500000",
+        "stocks": [
+            "SICL",
+            "HGI"
+        ],
+        "holdings": {
+            "SICL": 268.81720430107526,
+            "HGI": 703.2348804500704
+        }
+    },
+    {
+        "user": "evelpaudel311",
+        "comment": "UFL 500000 NBL 500000",
+        "stocks": [
+            "UFL",
+            "NBL"
+        ],
+        "holdings": {
+            "UFL": 2032.520325203252,
+            "NBL": 1457.725947521866
+        }
+    },
+    {
+        "user": "sRjN77",
+        "comment": "SAMAJ 1000000",
+        "stocks": [],
+        "holdings": {
+            "SAMAJ": 10000.0
+        }
+    },
+    {
+        "user": "hellogaurav_",
+        "comment": "NBL 1000000",
+        "stocks": [
+            "NBL"
+        ],
+        "holdings": {
+            "NBL": 2915.451895043732
+        }
+    }
+]
