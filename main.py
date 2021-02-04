@@ -47,18 +47,17 @@ class RedditGame:
 						comments_list.append(items['data']['body'])
 		return comments_list
 
-	def is_ticker_symbol(self,string):
+	def isTickerSymbol(self,string):
 		company_name = dictionaryMaker.ticker_and_company.get(string,0)
 		for each_dict in nepsejson:
 			if each_dict['companyName'] == company_name:
 				return True
 
-	def make_portofolio(self):
+	def makePortofolio(self,url):
 		today = date.today()
 		d1 = today.strftime("%Y_%m_%d")
 		d1 = d1.replace('/'," ")
 		temp = []
-		url = input("Please type the url of the reddit post: ")
 		usernames = self._usernames(url)
 		comments = self._comments(url)
 
@@ -75,7 +74,7 @@ class RedditGame:
 			# 3. storing stocks in json
 			# Getting Ticker Symbol inside comment
 			for word in comments[i].split():
-				if self.is_ticker_symbol(word):
+				if self.isTickerSymbol(word):
 					list_for_stocks.append(word)
 			item_data['stocks'] = list_for_stocks
 
@@ -131,6 +130,20 @@ class RedditGame:
 		with open('./data/results.json', 'w') as f1:
 			json.dump(new_temp, f1, indent=4)
 
+	@staticmethod
+	def urlGetter():
+		url = 'https://www.reddit.com/user/Wizard098/'
+		url = url + '.json'
+		r = requests.get(url, headers={'user-agent': 'Mozilla/5.0'})
+		r = r.json()
+		url_list = []
+		for items in r["data"]["children"]:
+			for keys in items['data']:
+				if keys == "permalink":
+					url_list.append(items['data']['permalink'])
+
+		return 'https://www.reddit.com'+url_list[1]
+
 if __name__ == '__main__':
 	reddit1 = RedditGame()
 
@@ -140,7 +153,7 @@ if __name__ == '__main__':
 		# https://www.reddit.com/r/NepalStock/comments/iwzh0n/weekly_trading_game_test/
 		# portofolio2021 01 06.json
 		if choice == "1":
-			reddit1.make_portofolio()
+			reddit1.makePortofolio(reddit1.urlGetter())
 			print("\nPortofolio successfully made!")
 		elif choice == "2":
 			reddit1.calculate()
