@@ -22,11 +22,13 @@ class RedditGame:
 		pass
 
 	def __get_source_code(self,url):
+		""" Makes the url and returns json format of it"""
 		url = url + '.json'
 		r = requests.get(url, headers={'user-agent': 'Mozilla/5.0'})
 		return r.json()
 
 	def _usernames(self,url):
+		""" Brings the Usernames from the given url"""
 		username_list = []
 		r = self.__get_source_code(url)
 		for each_dict in r:
@@ -38,6 +40,7 @@ class RedditGame:
 		return username_list
 
 	def _comments(self,url):
+		"""Brings the Comments From given url"""
 		comments_list = []
 		r = self.__get_source_code(url)
 		for each_dict in r:
@@ -54,6 +57,7 @@ class RedditGame:
 				return True
 
 	def makePortofolio(self,url):
+		"""Makes a portofolio with the date as filename"""
 		today = date.today()
 		d1 = today.strftime("%Y_%m_%d")
 		d1 = d1.replace('/'," ")
@@ -94,6 +98,7 @@ class RedditGame:
 			json.dump(temp,f,indent=4)
 
 	def calculate(self):
+		""" Calculates the portofolio and returns a json"""
 		i = 1
 		entries = os.listdir("./data")
 		file_dict = {}
@@ -132,6 +137,7 @@ class RedditGame:
 
 	@staticmethod
 	def urlGetter():
+		""" Gets the latest url of the user"""
 		url = 'https://www.reddit.com/user/Wizard098/'
 		url = url + '.json'
 		r = requests.get(url, headers={'user-agent': 'Mozilla/5.0'})
