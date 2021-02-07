@@ -141,7 +141,7 @@ class RedditGame:
                 if keys == "permalink":
                     url_list.append(items['data']['permalink'])
 
-    return 'https://www.reddit.com' + url_list[1]
+            return 'https://www.reddit.com' + url_list[1]
 
 
 reddit1 = RedditGame()
