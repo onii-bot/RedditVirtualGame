@@ -17,7 +17,5 @@ for i in range(len(data)):
         a = sheet["A"+str(j)]
         c = sheet["C"+str(j)]
         if a.value == company:
-            # print (a.value) 
-            # print (c.value,price)
             c.value =  price
 workbook.save("./data/STONKS V2.5Beta.xlsx")

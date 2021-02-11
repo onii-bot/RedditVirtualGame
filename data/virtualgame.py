@@ -3,13 +3,17 @@ import json
 import os
 from data import dictionaryMaker
 from datetime import date
-
+import operator
 
 FILENAME = './data/'
 
 nepsejson = requests.get("https://nepse-data-api.herokuapp.com/data/todaysprice")
 nepsejson = nepsejson.json()
 
+today = date.today()
+datetoday = today.strftime("%Y_%m_%d")
+datetoday = datetoday.replace('/'," ")
+datetoday = 'portofolio_'+datetoday+'.json'
 
 class RedditGame:
 
@@ -46,6 +50,7 @@ class RedditGame:
 		return comments_list
 
 	def isTickerSymbol(self,string):
+		string = string.upper()
 		company_name = dictionaryMaker.ticker_and_company.get(string,0)
 		for each_dict in nepsejson:
 			if each_dict['companyName'] == company_name:
@@ -53,11 +58,6 @@ class RedditGame:
 
 	def makePortofolio(self,url):
 		"""Makes a portofolio with the date as filename"""
-		today = date.today()
-		global ff1
-		ff1 = today.strftime("%Y_%m_%d")
-		ff1 = ff1.replace('/'," ")
-		ff1 = 'portofolio_'+ff1+'.json'
 		temp = []
 		usernames = self._usernames(url)
 		comments = self._comments(url)
@@ -85,25 +85,25 @@ class RedditGame:
 					holdings = int(money)/int(dictionaryMaker.ticker_and_ltp.get(ticker,0))
 					dict_for_holdings[ticker] = holdings
 				else:
-					ticker = money
+					ticker = money.upper()
 			item_data['holdings'] = dict_for_holdings
 			temp.append(item_data)
 
 
-		#opening file and packing
-		with open(FILENAME + ff1,'w') as f:
+		# opening file and packing
+		with open(FILENAME + datetoday,'w') as f:
 			json.dump(temp,f,indent=4)
 
 	def calculate(self):
 		""" Calculates the portofolio and returns a json"""
-		entries = os.listdir("./data")
 
-		file = './data/' + ff1
+		file = './data/'+ datetoday
 
 		with open(file, 'r') as f:
 			temp = json.load(f)
 		new_temp = []
 		os.system('python ./data/WritingToExcel.py')
+		from data import dictionaryMaker2
 		for entry in temp:
 			item_dict = {}
 			username = entry['user']
@@ -112,7 +112,7 @@ class RedditGame:
 			result = {}
 			total = 0
 			for k, v in holdings.items():
-				new_ltp = dictionaryMaker.ticker_and_ltp[k]
+				new_ltp = dictionaryMaker2.ticker_and_ltp[k]
 				money = float(new_ltp) * float(v)
 				result[k] = money
 				total = total + money
@@ -122,11 +122,12 @@ class RedditGame:
 
 		with open('./data/results.json', 'w') as f1:
 			json.dump(new_temp, f1, indent=4)
+		self.sort_and_txt('./data/results.json')
 
 	@staticmethod
 	def urlGetter():
 		""" Gets the latest url of the user"""
-		url = 'https://www.reddit.com/user/Wizard098/'
+		url = 'https://www.reddit.com/user/GameBotNEPSEBETS/'
 		url = url + '.json'
 		r = requests.get(url, headers={'user-agent': 'Mozilla/5.0'})
 		r = r.json()
@@ -137,6 +138,27 @@ class RedditGame:
 					url_list.append(items['data']['permalink'])
 
 		return 'https://www.reddit.com'+url_list[1]
+
+	@staticmethod
+	def sort_and_txt(jsonfile):
+		with open(jsonfile) as file:
+			data = json.load(file)
+			data.sort(key=operator.itemgetter('total'), reverse=True)
+			print(data)
+		outfile = open('finalresult.txt', 'w')
+		for i in range(len(data)):
+			details = data[i]
+			outfile.write(details["Username"])
+			outfile.write("\n")
+			outfile.write(str((details["result"])))
+			outfile.write("\n")
+			outfile.write(str((details["total"])))
+			outfile.write("\n")
+			outfile.write("\n")
+
+		outfile.close()
+
+
 
 
 
