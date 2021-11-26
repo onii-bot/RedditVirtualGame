@@ -4,6 +4,7 @@ import os
 from data import dictionaryMaker
 from datetime import date
 import operator
+from lxml import html
 
 FILENAME = './data/'
 
@@ -123,6 +124,13 @@ class RedditGame:
 		with open('./data/results.json', 'w') as f1:
 			json.dump(new_temp, f1, indent=4)
 		self.sort_and_txt('./data/results.json')
+	@staticmethod
+	def mepse_index():
+		sharesansar = requests.get("https://www.sharesansar.com/")
+		share = html.fromstring(sharesansar.content)
+
+		index = share.xpath('//*[@id="as-indices"]/div/table/tbody/tr[1]/td[2]/text()')
+		return str(index)
 
 	@staticmethod
 	def urlGetter():
@@ -157,6 +165,11 @@ class RedditGame:
 			outfile.write("\n")
 
 		outfile.close()
+		
+		fp = open('nepseindex.txt','w')
+		fp.write(nepse_index())
+		
+		fp.close()
 
 
 
